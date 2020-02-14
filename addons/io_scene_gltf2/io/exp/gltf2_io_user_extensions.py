@@ -20,4 +20,7 @@ def export_user_extensions(hook_name, export_settings, *args):
     for extension in export_settings['gltf_user_extensions']:
         hook = getattr(extension, hook_name, None)
         if hook is not None:
-            hook(*args, export_settings)
+            try:
+                hook(*args, export_settings)
+            except Exception:
+                pass
